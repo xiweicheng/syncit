@@ -6,6 +6,8 @@ import {
   TransporterEvents,
   TransporterEventHandler,
 } from './base';
+import { Chunk, RemoteControlPayload } from '@syncit/core';
+import { eventWithTime } from '@rrweb/types';
 
 export type PeerjsTransporterOptions = {
   uid: string;
@@ -18,11 +20,11 @@ export type PeerjsTransporterOptions = {
 const sleep = (ms: number) =>
   new Promise(resolve =>
     setTimeout(() => {
-      resolve();
+      resolve(undefined);
     }, ms)
   );
 
-export class PeerjsTransporter<T> implements Transporter<T> {
+export class PeerjsTransporter implements Transporter {
   handlers: Record<TransporterEvents, Array<TransporterEventHandler>> = {
     [TransporterEvents.SourceReady]: [],
     [TransporterEvents.MirrorReady]: [],
@@ -90,7 +92,7 @@ export class PeerjsTransporter<T> implements Transporter<T> {
       conn.on('open', () => {
         console.info('connection opened', Date.now());
         this.conn = conn;
-        resolve();
+        resolve(undefined);
       });
       conn.on('data', data => {
         const { event, payload } = data;
@@ -144,7 +146,7 @@ export class PeerjsTransporter<T> implements Transporter<T> {
     });
   }
 
-  sendRecord(record: unknown) {
+  sendRecord(record: Chunk<eventWithTime>) {
     return this.send({
       event: TransporterEvents.SendRecord,
       payload: record,
@@ -164,7 +166,7 @@ export class PeerjsTransporter<T> implements Transporter<T> {
     });
   }
 
-  sendRemoteControl(payload: unknown) {
+  sendRemoteControl(payload: RemoteControlPayload) {
     return this.send({
       event: TransporterEvents.RemoteControl,
       payload,

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { createMachine, interpret, assign, EventObject } from '@xstate/fsm';
+import { createMachine, interpret, assign, EventObject } from 'xstate';
 import { Replayer, record } from 'rrweb';
-import { listenerHandler, eventWithTime } from 'rrweb/typings/types';
+import { listenerHandler, eventWithTime } from '@rrweb/types';
 import { Transporter } from '@syncit/transporter';
 import { SourceBuffer, Chunk } from './buffer';
 import { onMirror, RemoteControlActions, CustomEventTags } from './common';
@@ -110,9 +110,13 @@ export const createAppControlService = (
             replayer.enableInteract();
             return {
               ...context,
-              stopControl: onMirror(replayer.iframe, payload => {
-                transporter.sendRemoteControl(payload);
-              }),
+              stopControl: onMirror(
+                replayer.getMirror(),
+                replayer.iframe,
+                payload => {
+                  transporter.sendRemoteControl(payload);
+                }
+              ),
               replayer,
             };
           }),
