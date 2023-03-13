@@ -3,7 +3,7 @@
 import { createMachine, interpret, assign, EventObject } from 'xstate';
 import { Replayer, record } from 'rrweb';
 import { listenerHandler, eventWithTime } from '@rrweb/types';
-import { Transporter } from '@syncit/transporter';
+import { Transporter } from './transporter';
 import { SourceBuffer, Chunk } from './buffer';
 import { onMirror, RemoteControlActions, CustomEventTags } from './common';
 
@@ -52,7 +52,7 @@ export const createAppService = (onStop: () => void) => {
 };
 
 type AppControlContext = {
-  transporter: Transporter<unknown>;
+  transporter: Transporter;
   stopControl?: listenerHandler;
   replayer?: Replayer;
 };
@@ -140,7 +140,7 @@ export const createAppControlService = (
 };
 
 type EmbedContext = {
-  transporter: Transporter<Chunk<eventWithTime>>;
+  transporter: Transporter;
   record: typeof record;
   stopRecordFn: listenerHandler | null;
   buffer: SourceBuffer<eventWithTime>;
