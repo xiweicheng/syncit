@@ -13,6 +13,7 @@ export namespace locale {
             const stopControl: string;
             const aborted: string;
             const reset: string;
+            const remoteUid: string;
         }
         namespace embed {
             const initializing_1: string;

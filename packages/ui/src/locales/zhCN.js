@@ -13,6 +13,7 @@ export const locale = {
       stopControl: '停止控制',
       aborted: '连接已被断开',
       reset: '重新准备',
+      remoteUid: '远程UID:',
     },
     embed: {
       initializing: '初始化中',

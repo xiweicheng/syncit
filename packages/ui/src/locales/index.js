@@ -1,7 +1,8 @@
 import { locale as zhCN } from './zhCN';
 import { locale as enUS } from './enUS';
 
-const fallbackLanguage = enUS;
+// const fallbackLanguage = enUS;
+const fallbackLanguage = zhCN;
 let currentLanguage = fallbackLanguage;
 
 const findPartsForData = (data, parts) => {

@@ -5,10 +5,11 @@
 	new syncit.App({
 		target: document.body,
 		props: {
+			lang: 'zh-CN',
 			bufferMs: 100,
-			createTransporter() {
+			createTransporter({ role, uid }) {
 				// return new syncitTransporter.LocalStorageTransporter();
-				return new syncitTransporter.WebSocketTransporter({url:'ws://localhost:3000/?page=app'});
+				return new syncitTransporter.WebSocketTransporter({url:`ws://localhost:3000/?role=${role}&uid=${uid}`});
 			}
 		}
 	});

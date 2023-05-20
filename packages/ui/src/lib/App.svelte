@@ -19,12 +19,13 @@
 	import Icon from './components/Icon.svelte';
 	import Canvas from './components/Canvas.svelte';
 	import PDF from './components/PDF.svelte';
-	import { t } from '../locales';
+	import { t, setCurrentLanguage} from '../locales';
 	import type { PaintingConfig } from './types';
 
 	let uid = '';
 
 	export let createTransporter: ({ role, uid }: { role: string; uid: string }) => Transporter;
+	export let lang: string | undefined = undefined;
 	export let bufferMs: number;
 
 	let transporter: Transporter;
@@ -241,6 +242,11 @@
 	let mouseSize = 'syncit-mouse-s2';
 
 	onMount(() => {
+
+		if (lang) {
+			setCurrentLanguage(lang);
+		}
+
 		service.start();
 		service.subscribe((state) => {
 			current = state;
@@ -260,7 +266,7 @@
 			<div class="syncit-center">
 				<div class="syncit-load-text syncit-hint align-center">
 					<label>
-						remote UID:
+						{t('app.remoteUid')}
 						<input
 							type="text"
 							bind:value={uid}

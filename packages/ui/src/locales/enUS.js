@@ -13,6 +13,7 @@ export const locale = {
       stopControl: 'Stop Remote Control',
       aborted: 'Disconnected',
       reset: 'Re-enable Syncit',
+      remoteUid: 'remote UID:',
     },
     embed: {
       initializing: 'Initializing',
