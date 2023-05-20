@@ -34,6 +34,8 @@ export const locale = {
       abortControl: '终止远程控制',
       abort: '停止分享',
       copied: '已复制',
+      paint: '绘图',
+      stopPaint: '停止绘图',
     },
   },
 };

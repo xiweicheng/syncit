@@ -37,6 +37,8 @@ export namespace locale {
             export const abortControl: string;
             export const abort: string;
             export const copied: string;
+            export const paint: string;
+            export const stopPaint: string;
         }
     }
 }
