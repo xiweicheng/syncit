@@ -6,7 +6,8 @@
 		target: document.body,
 		props: {
 			createTransporter() {
-				return new syncitTransporter.LocalStorageTransporter();
+				// return new syncitTransporter.LocalStorageTransporter();
+				return new syncitTransporter.WebSocketTransporter({url:'ws://localhost:3000/?page=embed'});
 			}
 		}
 	});

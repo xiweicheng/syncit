@@ -7,7 +7,8 @@
 		props: {
 			bufferMs: 100,
 			createTransporter() {
-				return new syncitTransporter.LocalStorageTransporter();
+				// return new syncitTransporter.LocalStorageTransporter();
+				return new syncitTransporter.WebSocketTransporter({url:'ws://localhost:3000/?page=app'});
 			}
 		}
 	});
