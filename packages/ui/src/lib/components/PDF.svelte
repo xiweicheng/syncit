@@ -2,7 +2,7 @@
 	import * as PDFJS from 'pdfjs-dist';
 
 	PDFJS.GlobalWorkerOptions.workerSrc =
-		'//cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/build/pdf.worker.min.js';
+		'//cdn.jsdelivr.net/npm/pdfjs-dist@3.6.172/build/pdf.worker.min.js';
 
 	let ref: HTMLElement;
 
