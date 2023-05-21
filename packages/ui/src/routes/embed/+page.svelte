@@ -8,7 +8,8 @@
 			lang: 'zh-CN',
 			createTransporter({ role, uid }) {
 				// return new syncitTransporter.LocalStorageTransporter();
-				return new syncitTransporter.WebSocketTransporter({url:`ws://localhost:3000/?role=${role}&uid=${uid}`});
+				// return new syncitTransporter.WebSocketTransporter({url:`ws://localhost:3000/?role=${role}&uid=${uid}`});
+				return new syncitTransporter.SocketioTransporter({url:`ws://localhost:3000?role=${role}&uid=${uid}`});
 			}
 		}
 	});
